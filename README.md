@@ -1,6 +1,6 @@
 # Messaging App
 
-To run application in development mode:
+To run the application in development mode:
 
 ```zsh
 yarn start
@@ -20,4 +20,4 @@ yarn test
 
 ## Notes
 
-I didn't have enough time due to rule do not spent more than 2 hour on this project to cover everything with unit test. But to show you that I didn't forget about them I covered `threadsService.tsx`.
+I didn't cover the application with the unit tests due to limited time. But to show you that I didn't forget about them, I covered `threadsService.tsx`.
