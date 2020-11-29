@@ -3,3 +3,29 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
+
+// browser mocks
+const localStorageMock = (function() {
+  let store = {
+    'contacts': `["value1","value2"]`,
+    'thread-1': `["message1","message2"]`
+  }
+  return {
+    getItem: function(key) {
+      return store[key] || null
+    },
+    setItem: function(key, value) {
+      store[key] = value.toString()
+    },
+    removeItem: function(key) {
+      delete store[key]
+    },
+    clear: function() {
+      store = {}
+    },
+  }
+})()
+
+Object.defineProperty(window, 'localStorage', {
+  value: localStorageMock,
+})

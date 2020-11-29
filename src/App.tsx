@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { ThemeProvider } from "styled-components";
+import theme from "./theme";
+import { AppContainer } from "./styles";
+import Contacts from "./components/Contacts";
+import Dialog from "./components/Dialog";
+import { initStore } from "./services/threadsService";
 
-function App() {
+export type ContactId = string;
+const App = () => {
+  const [activeContactId, setActiveContactId] = useState<ContactId>("1");
+
+  initStore();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <AppContainer>
+        <Contacts
+          activeContactId={activeContactId}
+          setActiveContactId={setActiveContactId}
+        />
+        <Dialog
+          activeContactId={activeContactId}
+          setActiveContactId={setActiveContactId}
+        />
+      </AppContainer>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
